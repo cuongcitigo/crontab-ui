@@ -12,8 +12,8 @@ var fs = require('fs');
 var busboy = require('connect-busboy'); // for file upload
 
 // basic auth
-var BASIC_AUTH_USER = process.env.BASIC_AUTH_USER;
-var BASIC_AUTH_PWD = process.env.BASIC_AUTH_PWD;
+var BASIC_AUTH_USER = process.env.CRONJOB_AUTH_USER;
+var BASIC_AUTH_PWD = process.env.CRONJOB_AUTH_PWD;
 
 if (BASIC_AUTH_USER && BASIC_AUTH_PWD) {
     app.use(function(req, res, next) {
@@ -49,10 +49,10 @@ app.use(express.static(__dirname + '/config'));
 app.set('views', __dirname + '/views');
 
 // set host to 127.0.0.1 or the value set by environment var HOST
-app.set('host', (process.env.HOST || '127.0.0.1'));
+app.set('host', (process.env.CRONJOB_HOST || '127.0.0.1'));
 
 // set port to 8000 or the value set by environment var PORT
-app.set('port', (process.env.PORT || 8000));
+app.set('port', (process.env.CRONJOB_PORT || 8000));
 
 // root page handler
 app.get(routes.root, function(req, res) {
